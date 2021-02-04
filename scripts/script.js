@@ -2,6 +2,7 @@
 // элементы на экран.
 
 console.log("___ Task 1 ___");
+
 let $1array = [1, 2, 3, 4, 5];
 for (let i = 0; i < $1array.length; i++)
     console.log($1array[i]);
@@ -11,6 +12,7 @@ for (let i = 0; i < $1array.length; i++)
 // числа, которые больше -10, но меньше -3.
 
 console.log("___ Task 2 ___");
+
 let $2array = [-2, -1, -3, 15, 0, -4, 2, -5, 9, -15, 0, 4, 5, -6, 10, 7];
 for (let i = 0; i < $2array.length; i++)
     if ($2array[i] > -10 && $2array[i] < -3)
@@ -22,12 +24,45 @@ for (let i = 0; i < $2array.length; i++)
 
 console.log("___ Task 3 ___");
 
+let $3arrayFor = [],
+    j = 23,
+    $3arrayWhile = [],
+    result = 0;
+
+for (let i = 23; i <= 57; i++)
+    $3arrayFor.push(i);
+
+while (j <= 57)
+    $3arrayWhile.push(j++);
+
+console.log($3arrayFor);
+console.log($3arrayWhile);
+
+for (let i = 0; i < $3arrayFor.length; i++)
+    result += $3arrayFor[i];
+
+console.log(result);
 
 // 4. Дан массив числами (строчного типа), например: [‘10’, ‘20’, ‘30’, ‘50’, ‘235’, ‘3000’].
 // Выведите на экран только те числа из массива, которые начинаются на цифру 1, 2 или
 // 5.
+
+console.log("___ Task 4 ___");
+
+let $4array = ["10", "20", "30", "50", "235", "3000"];
+
+for (let i = 0; i < $4array.length; i++)
+    if ($4array[i][0] == 1 || $4array[i][0] == 2 || $4array[i][0] == 5)
+        console.log($4array[i]);
+
 // 5. Составьте массив дней недели (ПН, ВТ, СР и т.д.). С помощью цикла for выведите все
 // дни недели, а выходные дни выведите жирным.
+
+console.log("___ Task 5 ___");
+
+
+
+
 // 6. Создайте массив с произвольными данными. Добавьте в конец массива любой элемент,
 //     и получите последний элемент массива, используя свойство length.
 // 7. Запросите у пользователя по очереди числовые значения при помощи prompt и
