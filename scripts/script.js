@@ -59,23 +59,87 @@ for (let i = 0; i < $4array.length; i++)
 // дни недели, а выходные дни выведите жирным.
 
 console.log("___ Task 5 ___");
-
-
-
+let $5days = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+for (let i = 0; i < $5days.length; i++) {
+    if (i > 4) console.log("%c%s", "font-weight: bold; font-size: 1.5em", $5days[i]); //source http://css.yoksel.ru/funny-little-console/
+    else console.log($5days[i]);
+}
 
 // 6. Создайте массив с произвольными данными. Добавьте в конец массива любой элемент,
 //     и получите последний элемент массива, используя свойство length.
+
+console.log("___ Task 6 ___");
+let $6array = [335, false, "Hello", [1, 2, 3, 4]];
+$6array.push("Последний элемент массива");
+console.log($6array[$6array.length - 1]);
+
+
 // 7. Запросите у пользователя по очереди числовые значения при помощи prompt и
 // сохраните их в массив. Собирайте числа до тез пор пока пользователь не введет пустое
 // значение. Выведите получившийся массив на экран. Выполните сортировку чисел
 // массива, и выведите его на экран.
+
+console.log("___ Task 7 ___ \nВыводится в alert");
+
+let $7array = [],
+    $7insetNumber;
+do {
+    $7insetNumber = prompt("Введите число\n\nчтобы закончить отправьте пустое значение");
+    if (!isNaN($7insetNumber) && $7insetNumber != "") $7array.push($7insetNumber);
+} while ($7insetNumber != "");
+
+alert($7array);
+$7array.sort(function (a, b) {
+    return a - b;
+});
+alert($7array);
+
 // 8. Переверните массив [12, false, ‘Текст’, 4, 2, -5, 0] (выведите в обратном порядке),
 // используя цикл while и метод reverse.
+
+console.log("___ Task 8 ___");
+
+let $8array = [12, false, 'Текст', 4, 2, -5, 0],
+    i = 0;
+$8array.reverse();
+while (i < $8array.length)
+    console.log($8array[i++]);
+
 // 9. Напишите скрипт, считающий количество нулевых (пустых) элементов в заданном
 // целочисленном массиве [5, 9, 21, , , 9, 78, , , , 6].
+
+console.log("___ Task 9 ___");
+let $9array = [5, 9, 21, , , 9, 78, , , , 6],
+    $9count = 0;
+console.log($9array.length);
+for (let i = 0; i < $9array.length; i++)
+    if ($9array[i] == null) $9count++;
+console.log($9count);
+
 // 10. Найдите сумму элементов массива между двумя нулями (первым и последним нулями
 // в массиве). Если двух нулей нет в массиве, то выведите ноль. В массиве может быть
 // более 2х нулей. Пример массива: [48,9,0,4,21,2,1,0,8,84,76,8,4,13,2] или
 //     [1,8,0,13,76,8,7,0,22,0,2,3,2].
+
+console.log("___ Task 10 ___");
+
+let $10array1 = [48, 9, 0, 4, 21, 2, 1, 0, 8, 84, 76, 8, 4, 13, 2],
+    $10array2 = [1, 8, 0, 13, 76, 8, 7, 0, 22, 0, 2, 3, 2],
+    $10startIndex,
+    $10lastIndex,
+    $10sum1,
+    $10sum2;
+
+$10startIndex = $10array1.indexOf(0);
+$10lastIndex = $10array1.lastIndexOf(0);
+
+if ($10startIndex == $10lastIndex)
+    $10sum1 = 0;
+else for (; ++$10startIndex < $10lastIndex;)
+        $10sum1 += $10array1[$10startIndex];
+
+console.log($10sum1);
+
+
 // 11. *** Нарисовать равнобедренный треугольник из символов ^. Высоту выбирает
 // пользователь. Например: высота = 5, на экране:
