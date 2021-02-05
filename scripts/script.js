@@ -125,21 +125,24 @@ console.log("___ Task 10 ___");
 
 let $10array1 = [48, 9, 0, 4, 21, 2, 1, 0, 8, 84, 76, 8, 4, 13, 2],
     $10array2 = [1, 8, 0, 13, 76, 8, 7, 0, 22, 0, 2, 3, 2],
+    $10array3 = [1, 8, 0, 13, 76, 8, 7, 2, 3, 2],
+    $10array4 = [1, 8, 0, 13, 76, 8, 7, 2, 3, 2],
+    $10arrays = [$10array1, $10array2, $10array3, $10array4],
     $10startIndex,
     $10lastIndex,
-    $10sum1,
-    $10sum2;
+    $10sum;
 
-$10startIndex = $10array1.indexOf(0);
-$10lastIndex = $10array1.lastIndexOf(0);
+for (i = 0; i < $10arrays.length; i++) {
+    $10startIndex = $10arrays[i].indexOf(0);
+    $10lastIndex = $10arrays[i].lastIndexOf(0);
+    $10sum = 0;
 
-if ($10startIndex == $10lastIndex)
-    $10sum1 = 0;
-else for (; ++$10startIndex < $10lastIndex;)
-        $10sum1 += $10array1[$10startIndex];
+    if ($10startIndex != $10lastIndex)
+        for (; ++$10startIndex < $10lastIndex;)
+            $10sum += $10arrays[i][$10startIndex];
 
-console.log($10sum1);
-
+    console.log($10sum);
+}
 
 // 11. *** Нарисовать равнобедренный треугольник из символов ^. Высоту выбирает
 // пользователь. Например: высота = 5, на экране:
