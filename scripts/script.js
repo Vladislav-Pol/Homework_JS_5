@@ -146,11 +146,17 @@ for (i = 0; i < $10arrays.length; i++) {
 
 // 11. *** Нарисовать равнобедренный треугольник из символов ^. Высоту выбирает
 // пользователь. Например: высота = 5, на экране:
-//
-// console.log("___ Task 11 ___");
-//
-// for (let height; height == NaN;)
-//     height = parseInt(prompt("Введите число для указания высоты треугольника\n(принимается только целая часть числа)"));
-//
-// console.log(height);
-//
+
+console.log("___ Task 11 ___");
+let height = NaN;
+for (; isNaN(height);)
+    height = parseInt(prompt("Введите число для указания высоты треугольника\n(принимается только целая часть числа)"));
+console.log(height);
+
+for (let $11text, i = 0; i < height; i++){
+    //console.log(i);
+    $11text = new Array(height - i + 1).join(" ");
+    $11text += new Array((i * 2 + 2)).join("^");
+    console.log($11text);
+}
+
