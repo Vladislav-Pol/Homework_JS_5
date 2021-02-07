@@ -137,9 +137,9 @@ function pyramid(a){
         console.log(text);
     }
 }
-let $7a = askNumber("Задаем высоту пирамиды. Введите число."),
-    $7b = prompt("Если хотите нарисовать пирамиду своим символом, введите один символ");
-    pyramid($7a, $7b);
+// let $7a = askNumber("Задаем высоту пирамиды. Введите число."), todo Раскомментировать строку
+//     $7b = prompt("Если хотите нарисовать пирамиду своим символом, введите один символ"); todo Раскомментировать строку
+//     pyramid($7a, $7b); todo Раскомментировать строку
 
 // 8. Напишите ф-цию, которая рисует равнобедренный треугольник из
 // звездочек:
@@ -172,18 +172,42 @@ function printReverseArray (array){
     printArray(array);
 }
 
-printArray(createTriangle(askNumber("Введите высоту треугольника")));
-printReverseArray(createTriangle(askNumber("Введите высоту перевернутого треугольника")));
+// printArray(createTriangle(askNumber("Введите высоту треугольника")));  todo Раскомментировать строку
+// printReverseArray(createTriangle(askNumber("Введите высоту перевернутого треугольника"))); todo Раскомментировать строку
 
 // 9. Напишите ф-цию, которая возвращает массив заполненный числами
 // Фибоначи от 0 до 1000.
 
-console.log("___ Task 8 ___");
+console.log("___ Task 9 ___");
 
+function createArFib(maxNumber){
+    let array = [0, 1, 1];
+    for (let i = 2; array[i] < maxNumber; i++){
+        array.push(array[i] + array[i - 1]);
+    }
+    array.pop();
+    return array;
+}
+
+console.log(createArFib(1000));
 
 // 10. Дано число. Сложите его цифры. Если сумма получилась более 9-ти,
 //     опять сложите его цифры. И так, пока сумма не станет однозначным числом
 // (9 и менее). Исп. Рекурсию.
+
+console.log("___ Task 10 ___");
+
+function sumDigits(a){
+    let result = 0;
+    for (let i = 0; i < a.length; i++)
+        result += a[i] * 1;
+    if (result > 9)
+        result = sumDigits(result + "");
+    return result;
+}
+
+console.log(sumDigits(askNumber("Введите число")));
+
 // 11. Дан массив с числами (передается параметром). Выведите
 // последовательно его элементы, используя рекурсию и не используя цикл.
 // 12. Напишите ф-цию, запрашивающую имя, фамилия, отчество и номер
