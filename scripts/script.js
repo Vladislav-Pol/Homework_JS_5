@@ -200,16 +200,27 @@ console.log("___ Task 10 ___");
 function sumDigits(a){
     let result = 0;
     for (let i = 0; i < a.length; i++)
-        result += a[i] * 1;
+        result += a[i] * 1
     if (result > 9)
-        result = sumDigits(result + "");
+        result = sumDigits(String(result))
     return result;
 }
 
-console.log(sumDigits(askNumber("Введите число")));
+//console.log(sumDigits(askNumber("Введите число для суммированя его цифр")));  todo Раскомментировать строку
 
 // 11. Дан массив с числами (передается параметром). Выведите
 // последовательно его элементы, используя рекурсию и не используя цикл.
+
+console.log("___ Task 11 ___");
+
+function $10printArray(array){
+    console.log(array.shift());
+    if (array.length > 0)
+        $10printArray(array)
+}
+
+$10printArray([1, 5, 7, 45, 75, 2, 478, 49 ,13, 41, 25, 36, 46])
+
 // 12. Напишите ф-цию, запрашивающую имя, фамилия, отчество и номер
 // группы студента и выводящую введённые данные в следующем виде:
 //
@@ -223,6 +234,44 @@ console.log(sumDigits(askNumber("Введите число")));
 //     Рамку вывести в консоль.
 //
 //     Курс «JS».
+
+console.log("___ Task 12 ___");
+
+function makeLabel(){
+    let arrText = [];
+    arrText[0] = arrText[4] = "";
+    arrText[1] = "* Домашняя работа: «Функции» ";
+    arrText[2] = "* Выполнил: студент гр. ";
+    arrText[3] = "* ";
+    let surname = prompt("Введите вашу фамилию");
+    let name = prompt("Введите ваше имя");
+    let patronymic = prompt("Введите ваше отчество");
+    let group = prompt("Введите номер вашей группы");
+
+    arrText[2] += group;
+    arrText[3] += (surname + " " + name + " " + patronymic);
+
+    let maxLength = 0;
+    // for (let i = 0; i < arrText.length; i++){
+    //     console.log(arrText[i]);
+    //     console.log(arrText[i].length);
+    // }
+
+    for (let string of arrText)
+        if (string.length && string.length > maxLength)
+            maxLength = string.length
+    maxLength += 2;
+
+    arrText[0] = arrText[4] = new Array(maxLength + 1).join("*");
+    arrText[1] += (new Array(maxLength - arrText[1].length - 2 + 1).join(" ") + " *");
+    arrText[2] += (new Array(maxLength - arrText[2].length - 2 + 1).join(" ") + " *");
+    arrText[3] += (new Array(maxLength - arrText[3].length - 2 + 1).join(" ") + " *");
+
+    return arrText;
+}
+
+printArray(makeLabel());
+
 // 13. Напишите ф-цию, которая должна проверить правильность ввода адреса
 // эл. почты, неиспользуя регулярные выражения. Почта верна при условии:
 //     a. весь адрес не должен содержать русские буквы и спецсимволы, кроме
