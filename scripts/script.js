@@ -130,21 +130,57 @@ console.log(onlyEven(array));
 
 console.log("___ Task 7 ___");
 
+function pyramid(a){
+    for (let i = 1; i <= a; i++){
+        let symb = arguments[1] != undefined && arguments[1].length == 1 && arguments[1] != " " ? arguments[1] : i,
+            text = new Array(i + 1).join(symb);
+        console.log(text);
+    }
+}
+let $7a = askNumber("Задаем высоту пирамиды. Введите число."),
+    $7b = prompt("Если хотите нарисовать пирамиду своим символом, введите один символ");
+    pyramid($7a, $7b);
 
 // 8. Напишите ф-цию, которая рисует равнобедренный треугольник из
 // звездочек:
 //
 //     *
-// ***
-// *****
-// *******
+//    ***
+//   *****
+//  *******
 // *********
 //
 // Кол-во рядов должно вводиться с клавиатуры. Доп., напишите такую же ф-
 // цию, но которая выведет перевернутый треугольник.
 //
+
+console.log("___ Task 8 ___");
+
+function createTriangle(a){
+    let array = new Array(a);
+    for (let i = 0; i < a; i++){
+        array[i] = new Array(a - i).join(" ") + new Array(i * 2 + 2).join("*");
+    }
+    return array;
+}
+function printArray(array){
+    for (let string of array)
+        console.log(string)
+}
+function printReverseArray (array){
+    array.reverse();
+    printArray(array);
+}
+
+printArray(createTriangle(askNumber("Введите высоту треугольника")));
+printReverseArray(createTriangle(askNumber("Введите высоту перевернутого треугольника")));
+
 // 9. Напишите ф-цию, которая возвращает массив заполненный числами
 // Фибоначи от 0 до 1000.
+
+console.log("___ Task 8 ___");
+
+
 // 10. Дано число. Сложите его цифры. Если сумма получилась более 9-ти,
 //     опять сложите его цифры. И так, пока сумма не станет однозначным числом
 // (9 и менее). Исп. Рекурсию.
