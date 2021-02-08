@@ -252,11 +252,6 @@ function makeLabel(){
     arrText[3] += (surname + " " + name + " " + patronymic);
 
     let maxLength = 0;
-    // for (let i = 0; i < arrText.length; i++){
-    //     console.log(arrText[i]);
-    //     console.log(arrText[i].length);
-    // }
-
     for (let string of arrText)
         if (string.length && string.length > maxLength)
             maxLength = string.length
@@ -270,7 +265,7 @@ function makeLabel(){
     return arrText;
 }
 
-printArray(makeLabel());
+//printArray(makeLabel());   todo Раскомментировать строку
 
 // 13. Напишите ф-цию, которая должна проверить правильность ввода адреса
 // эл. почты, неиспользуя регулярные выражения. Почта верна при условии:
@@ -284,6 +279,102 @@ printArray(makeLabel());
 // c. после последней точки и после @, домен верхнего уровня (ru, by, com и
 // т.п.) не может быть длиной менее 2 и более 11 символов.
 //
+
+console.log("___ Task 13 ___");
+
+function validationEmail(email){
+    let flag = true;
+
+    //создание масстива с кодами разрешенных символов
+    let arrValidCode = [];
+    arrValidCode.push(64);
+    arrValidCode.push(46);
+    arrValidCode.push(45);
+    arrValidCode.push(95);
+    for (let i = 48; i <= 57; i++){
+        arrValidCode.push(i)
+    }
+    for (let i = 65; i <= 90; i++){
+        arrValidCode.push(i)
+    }
+    for (let i = 97; i <= 122; i++){
+        arrValidCode.push(i)
+    }
+    //проверка на содержание недопустимых мисволов
+    for (let char of email) {
+        if (arrValidCode.indexOf(char.charCodeAt(0)) == -1)
+            flag = false
+    }
+    if (!flag) return flag
+    //проверка на количество собачек
+    let countAt = 0;
+    for (let char of email) {
+        if (char.charCodeAt(0) == 64)
+            countAt++;
+    }
+    if (countAt != 1)
+        flag = false
+    if (!flag) return flag
+    //проверка на спецсимволы в начале, конце или нахождение их подряд
+    let symbIndexes = [];
+    for (let i = 0; i < 4; i++){
+        let j = 0;
+        while (j < email.length && j != -1){
+            j = email.indexOf(String.fromCharCode(arrValidCode[i]), j);
+            if (j > -1){
+                symbIndexes.push(j);
+                j++;
+            }
+        }
+    }
+    if (symbIndexes.indexOf(0) != -1 || symbIndexes.indexOf(email.length-1) != -1)
+        flag = false
+    symbIndexes.sort(function (a, b){return a - b});
+    for (let i = 1; i < symbIndexes.length; i++){
+        if(symbIndexes[i] - symbIndexes[i -1] == 1)
+            flag = false
+    }
+    //проверка длины имени до собачки
+    let emailNameLangth = email.indexOf("@");
+    if (emailNameLangth < 2)
+        flag = false
+    //проверка на наличие цифр на позиции первого символа
+    for (let i = 0; i <=9; i++)
+        if (email[0] == i)
+            flag = false
+
+    //////////////////////////////////////////////////////////////////////////
+    // //проверка на состав имени только из цифр
+    // let arrCharsEmailName = [];
+    // for (let i = 0; i < emailNameLangth; i++){
+    //     for (let j = 0; j <= 9; j++)
+    //         if (email[i] == j)
+    //             arrCharsEmailName.push(email[i])
+    // }
+    // if (emailNameLangth == arrCharsEmailName.length)
+    //     flag = false
+    //////////////////////////////////////////////////////////////////////////
+
+    //проверка на наличие дефиса и нижнего подчеркивания в имени
+    if (email.lastIndexOf("-", emailNameLangth) != -1)
+        flag = false
+    if (email.lastIndexOf("_", emailNameLangth) != -1)
+        flag = false
+
+    //проверка наличия точки после @
+    if (email.indexOf(".", email.indexOf("@")) == -1)
+        flag = false
+    //проаерка длинны домена верхнего уровня
+    let domenLength = email.length - email.lastIndexOf(".") - 1;
+    if (domenLength < 2 || domenLength > 11)
+        flag = false
+
+
+    return flag;
+}
+
+console.log(validationEmail("V_polonik@inbox.ru"));
+
 //     Для ввода значений можете использовать ф-цию prompt(), либо задавать
 // значения при инициализации переменных в коде.
 //     Для вывода результатов скриптов вы можете использовать функции: alert()
