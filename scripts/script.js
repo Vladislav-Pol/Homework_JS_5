@@ -283,33 +283,35 @@ printArray(makeLabel());
 console.log("___ Task 13 ___");
 
 function validationEmail(email){
-    function charsChecking(email){ //проверка на содержание недопустимых символов
-        let arrValidCode = [64, 46, 45, 95]; //создание масстива с кодами разрешенных символов
-        for (let i = 48; i <= 57; i++){
-            arrValidCode.push(i)
-        }
-        for (let i = 65; i <= 90; i++){
-            arrValidCode.push(i)
-        }
-        for (let i = 97; i <= 122; i++){
-            arrValidCode.push(i)
-        }
-        for (let char of email) {
-            if (arrValidCode.indexOf(char.charCodeAt(0)) == -1)
-                return false
-        }
-    }
-    function atChecking(email){ //проверка на количество собачек
-        let countAt = 0;
-        for (let char of email) {
-            if (char.charCodeAt(0) == 64)
-                countAt++;
-        }
-        if (countAt != 1)
-            return false
-    }
+    let flag = true;
 
-    function specialCharChecking(email){ //проверка на спецсимволы в начале, конце или нахождение их подряд
+    //создание масстива с кодами разрешенных символов
+    let arrValidCode = [64, 46, 45, 95];
+    for (let i = 48; i <= 57; i++){
+        arrValidCode.push(i)
+    }
+    for (let i = 65; i <= 90; i++){
+        arrValidCode.push(i)
+    }
+    for (let i = 97; i <= 122; i++){
+        arrValidCode.push(i)
+    }
+    //проверка на содержание недопустимых символов
+    for (let char of email) {
+        if (arrValidCode.indexOf(char.charCodeAt(0)) == -1)
+            flag = false
+    }
+    if (!flag) return flag
+    //проверка на количество собачек
+    let countAt = 0;
+    for (let char of email) {
+        if (char.charCodeAt(0) == 64)
+            countAt++;
+    }
+    if (countAt != 1)
+        flag = false
+    if (!flag) return flag
+    //проверка на спецсимволы в начале, конце или нахождение их подряд
     let symbIndexes = [];
     for (let i = 0; i < 4; i++){
         let j = 0;
@@ -364,7 +366,7 @@ function validationEmail(email){
         flag = false
 
 
-    return charsChecking(email) && atChecking(email);
+    return flag;
 }
 
 console.log(validationEmail("V_polonik@inbox.ru"));
