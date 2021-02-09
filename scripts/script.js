@@ -4,7 +4,7 @@
 console.log("___ Task 1 ___");
 
 function calculate1(a, b, c) {
-    return (a - b) / c
+    return c == 0 ? "На ноль делить нельзя" : (a - b) / c
 }
 
 console.log(calculate1(4, 6, 2));
@@ -16,7 +16,7 @@ console.log(calculate1(15, 4, 2));
 console.log("___ Task 2 ___");
 
 function calculate2(a) {
-    return [a ** 3, a ** 2];
+    return [a ** 3, a ** 2]
 }
 
 console.log(calculate2(2));
@@ -46,27 +46,27 @@ console.log(max3(10, 99));
 console.log("___ Task 4 ___");
 function askNumber(message){
     do{
-        var number = prompt(message);
-    } while (number % 1 != 0 && number != "");
-    return number;
+        var number = prompt(message)
+    } while (number % 1 != 0 && number != "")
+    return number
 }
 function makeArray(){
     let array = [],
         a = askNumber("Введите начальное значение диапазона чисел"),
-        b = askNumber("Введите конечное число диапазона чисел");
-    let min = min3(a, b),
+        b = askNumber("Введите конечное число диапазона чисел"),
+        min = min3(a, b),
         max = max3(a, b);
     for (let i = min; i <=max; i++)
         array.push(i)
     if (a == max)
-        array.reverse();
+        array.reverse()
     return array
 }
 function print(arr){
     console.log(arr)
 }
 
-//print(makeArray()); todo Раскомментировать строку
+print(makeArray());
 
 // 5. Сделайте функцию isEven() (even - это четный), которая параметром
 // принимает целое число и проверяет: четное оно или нет. Если четное - пусть
@@ -75,11 +75,11 @@ function print(arr){
 console.log("___ Task 5 ___");
 
 function isEven(a){
-    if (a % 1 != 0 || (a == "" && a != 0)) return;
+    if (a % 1 != 0 || (a == "" && a != 0)) return `${a} - не целое число`;
     return (a % 2 === 0);
 }
 
-//console.log(isEven(prompt("Введите число для проверки на четность"))); todo Раскомментировать строку
+console.log(isEven(prompt("Введите число для проверки на четность")));
 
 // 6. Напишите ф-цию, в которую передается массив с целыми числами.
 //     Верните новый массив, где останутся лежать только четные из этих чисел.
@@ -91,11 +91,11 @@ console.log("___ Task 6 ___");
 let array = [1, 2, 3, 6, 34, 56, 67, 107, 43, -34, 67, 0, -78, 34];
 
 function onlyEven(array){
-    let localarray = [];
-     for (let i = 0; i <= array.length; i++)
+    let localArray = [];
+     for (let i = 0; i < array.length; i++)
          if (isEven(array[i]))
-             localarray.push(array[i]);
-    return localarray;
+             localArray.push(array[i]);
+    return localArray;
  }
 
 console.log(onlyEven(array));
@@ -137,9 +137,9 @@ function pyramid(a){
         console.log(text);
     }
 }
-// let $7a = askNumber("Задаем высоту пирамиды. Введите число."), todo Раскомментировать строку
-//     $7b = prompt("Если хотите нарисовать пирамиду своим символом, введите один символ"); todo Раскомментировать строку
-//     pyramid($7a, $7b); todo Раскомментировать строку
+let $7a = askNumber("Задаем высоту пирамиды. Введите число."),
+    $7b = prompt("Если хотите нарисовать пирамиду своим символом, введите один символ");
+    pyramid($7a, $7b);
 
 // 8. Напишите ф-цию, которая рисует равнобедренный треугольник из
 // звездочек:
@@ -172,24 +172,24 @@ function printReverseArray (array){
     printArray(array);
 }
 
-// printArray(createTriangle(askNumber("Введите высоту треугольника")));  todo Раскомментировать строку
-// printReverseArray(createTriangle(askNumber("Введите высоту перевернутого треугольника"))); todo Раскомментировать строку
+printArray(createTriangle(askNumber("Введите высоту треугольника")));
+printReverseArray(createTriangle(askNumber("Введите высоту перевернутого треугольника")));
 
 // 9. Напишите ф-цию, которая возвращает массив заполненный числами
 // Фибоначи от 0 до 1000.
 
 console.log("___ Task 9 ___");
 
-function createArFib(maxNumber){
-    let array = [0, 1, 1];
-    for (let i = 2; array[i] < maxNumber; i++){
+function createArrFib(maxNumber){
+    let array = [0, 1];
+    for (let i = 1; array[i] < maxNumber; i++){
         array.push(array[i] + array[i - 1]);
     }
     array.pop();
     return array;
 }
 
-console.log(createArFib(1000));
+console.log(createArrFib(1000));
 
 // 10. Дано число. Сложите его цифры. Если сумма получилась более 9-ти,
 //     опять сложите его цифры. И так, пока сумма не станет однозначным числом
@@ -199,14 +199,16 @@ console.log("___ Task 10 ___");
 
 function sumDigits(a){
     let result = 0;
-    for (let i = 0; i < a.length; i++)
-        result += a[i] * 1
-    if (result > 9)
-        result = sumDigits(String(result))
-    return result;
+    if (a > 9) {
+        a = String(a);
+        for (let i = 0; i < a.length; i++)
+            result += Number(a[i])
+        a = sumDigits(result)
+    }
+    return a;
 }
 
-//console.log(sumDigits(askNumber("Введите число для суммированя его цифр")));  todo Раскомментировать строку
+console.log(sumDigits(askNumber("Введите число для суммированя его цифр")));
 
 // 11. Дан массив с числами (передается параметром). Выведите
 // последовательно его элементы, используя рекурсию и не используя цикл.
@@ -258,14 +260,12 @@ function makeLabel(){
     maxLength += 2;
 
     arrText[0] = arrText[4] = new Array(maxLength + 1).join("*");
-    arrText[1] += (new Array(maxLength - arrText[1].length - 2 + 1).join(" ") + " *");
-    arrText[2] += (new Array(maxLength - arrText[2].length - 2 + 1).join(" ") + " *");
-    arrText[3] += (new Array(maxLength - arrText[3].length - 2 + 1).join(" ") + " *");
-
+    for (let i = 1; i <=3; i++)
+        arrText[i] += (new Array(maxLength - arrText[i].length - 2 + 1).join(" ") + " *")
     return arrText;
 }
 
-//printArray(makeLabel());   todo Раскомментировать строку
+printArray(makeLabel());
 
 // 13. Напишите ф-цию, которая должна проверить правильность ввода адреса
 // эл. почты, неиспользуя регулярные выражения. Почта верна при условии:
@@ -283,39 +283,33 @@ function makeLabel(){
 console.log("___ Task 13 ___");
 
 function validationEmail(email){
-    let flag = true;
+    function charsChecking(email){ //проверка на содержание недопустимых символов
+        let arrValidCode = [64, 46, 45, 95]; //создание масстива с кодами разрешенных символов
+        for (let i = 48; i <= 57; i++){
+            arrValidCode.push(i)
+        }
+        for (let i = 65; i <= 90; i++){
+            arrValidCode.push(i)
+        }
+        for (let i = 97; i <= 122; i++){
+            arrValidCode.push(i)
+        }
+        for (let char of email) {
+            if (arrValidCode.indexOf(char.charCodeAt(0)) == -1)
+                return false
+        }
+    }
+    function atChecking(email){ //проверка на количество собачек
+        let countAt = 0;
+        for (let char of email) {
+            if (char.charCodeAt(0) == 64)
+                countAt++;
+        }
+        if (countAt != 1)
+            return false
+    }
 
-    //создание масстива с кодами разрешенных символов
-    let arrValidCode = [];
-    arrValidCode.push(64);
-    arrValidCode.push(46);
-    arrValidCode.push(45);
-    arrValidCode.push(95);
-    for (let i = 48; i <= 57; i++){
-        arrValidCode.push(i)
-    }
-    for (let i = 65; i <= 90; i++){
-        arrValidCode.push(i)
-    }
-    for (let i = 97; i <= 122; i++){
-        arrValidCode.push(i)
-    }
-    //проверка на содержание недопустимых мисволов
-    for (let char of email) {
-        if (arrValidCode.indexOf(char.charCodeAt(0)) == -1)
-            flag = false
-    }
-    if (!flag) return flag
-    //проверка на количество собачек
-    let countAt = 0;
-    for (let char of email) {
-        if (char.charCodeAt(0) == 64)
-            countAt++;
-    }
-    if (countAt != 1)
-        flag = false
-    if (!flag) return flag
-    //проверка на спецсимволы в начале, конце или нахождение их подряд
+    function specialCharChecking(email){ //проверка на спецсимволы в начале, конце или нахождение их подряд
     let symbIndexes = [];
     for (let i = 0; i < 4; i++){
         let j = 0;
@@ -370,7 +364,7 @@ function validationEmail(email){
         flag = false
 
 
-    return flag;
+    return charsChecking(email) && atChecking(email);
 }
 
 console.log(validationEmail("V_polonik@inbox.ru"));
